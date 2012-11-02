@@ -38,7 +38,6 @@
           data: data,
           success: function(data) {
             baseText = data;
-            console.log(data);
           },
           complete: function() {
             $.ajax({ // get newText
@@ -47,7 +46,6 @@
               data: data,
               success: function(data) { 
                 newText = data;
-                console.log(data);
               },
               complete: function() { // now doDiff
                 doDiff(baseText, newText);
@@ -60,6 +58,9 @@
         var doDiff = function(baseText, newText){
         	var baseTextLines = difflib.stringAsLines(baseText['source']);
         	var newTextLines = difflib.stringAsLines(newText['source']);
+        	
+        	console.log(baseTextLines);
+        	console.log(newTextLines);
         	
         	// difflib.SequenceMatcher
         	var startTime = (new Date()).getTime();

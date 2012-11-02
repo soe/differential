@@ -1,0 +1,62 @@
+<html>
+
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <title>Differential</title>
+    <script type="text/javascript" src="js/difflib.js"></script>
+    <script type="text/javascript" src="js/diffview.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    
+    <link rel="stylesheet" type="text/css" href="css/diffview.css">
+    
+    <script language="javascript">
+      $(function() {
+
+      	// when diff button is clicked
+        $("#diff").click(function(){
+        	var baseText = difflib.stringAsLines($("#baseText").val());
+        	var newText = difflib.stringAsLines($("#newText").val());
+        	
+        	var startTime = (new Date()).getTime();
+        	var sm = new difflib.SequenceMatcher(baseText, newText);
+        	var opcodes = sm.get_opcodes();
+          var endTime = (new Date()).getTime();
+          console.log('difflib.SequenceMatcher: ' + (endTime - startTime) + ' ms');
+          
+        	var $diffoutput = $("#diffoutput");
+        	$diffoutput.html('');
+        	
+        	var contextSize = $("#contextSize").val();
+        	contextSize = contextSize ? contextSize : null;
+        	
+        	var startTime = (new Date()).getTime();
+          	$diffoutput.html(
+              diffview.buildView({ 
+              baseTextLines:baseText,
+              newTextLines:newText,
+              opcodes:opcodes,
+              baseTextName:"Base Text",
+              newTextName:"New Text",
+              contextSize:contextSize,
+              viewType: 0
+          	})
+        	);
+        	var endTime = (new Date()).getTime();
+          console.log('diffview.buildView: ' + (endTime - startTime) + ' ms');
+          
+          
+        });
+      });
+
+    </script>
+</head>
+<body>
+  <input type="button" id="diff" value="diff" />
+  <table width="840px">
+    <tr>
+      <td><textarea id="baseText" style="width:400px;height:300px"></textarea></td>
+      <td><textarea id="newText" style="width:400px;height:300px"></textarea></td>
+    </tr>
+  </table>
+	<div id="diffoutput" style="width:100%"> </div>
+</body></html>

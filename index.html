@@ -65,7 +65,7 @@
         	var sm = new difflib.SequenceMatcher(baseTextLines, newTextLines);
         	var opcodes = sm.get_opcodes();
           var endTime = (new Date()).getTime();
-          console.log('difflib.SequenceMatcher: ' + (endTime - startTime) + ' ms');
+          var timer_difflib = endTime - startTime; 
           
         	var $diff_output = $("#diff-output");
         	$diff_output.html('');
@@ -84,7 +84,12 @@
           	})
         	);
         	var endTime = (new Date()).getTime();
-          console.log('diffview.buildView: ' + (endTime - startTime) + ' ms');
+        	var timer_diffview = endTime - startTime; 
+        	
+          // timer output
+          $('#timer').html('difflib: '+ timer_difflib +' ms, diffview: '+ timer_diffview +' ms');
+          console.log('difflib: '+ timer_difflib +' ms, diffview: '+ timer_diffview +' ms');
+          
         }; // end doDiff function
       });
     </script>
@@ -101,6 +106,8 @@
     </div>
     <br />
     <hr />
+    <div id="timer">
+    </div>
   	<div id="diff-output" style="width:100%">
   	  <!-- diff output -->
   	</div>

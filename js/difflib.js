@@ -28,8 +28,7 @@ ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF S
 DAMAGE.
 ***/
 /* Author: Chas Emerick <cemerick@snowtide.com> */
-//__whitespace = {" ":true, "\t":true, "\n":true, "\f":true, "\r":true};
-__whitespace = {"\n":true, "\f":true, "\r":true};
+__whitespace = {" ":true, "\t":true, "\n":true, "\f":true, "\r":true};
 
 difflib = {
 	defaultJunkFunction: function (c) {

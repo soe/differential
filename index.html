@@ -1,11 +1,11 @@
 <html>
 
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <meta http-equiv="Content-Type" content="text/html;">
     <title>Differential</title>
     <script type="text/javascript" src="js/difflib.js"></script>
     <script type="text/javascript" src="js/diffview.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
     
     <link rel="stylesheet" type="text/css" href="css/diffview.css">
     
@@ -15,6 +15,10 @@
         var hash = window.location.hash.substr(1);
         var files = hash.split(',');
         
+        // set default
+        if(!files.length) files = Array('baseText.json', 'newText.json');
+        
+        // change endpoint here
         //var endpoint = 'https://api.cmc.appirio.net/va1/metadata/';
         var endpoint = 'http://soe.github.com/differential/files/';
         
@@ -41,7 +45,7 @@
                 newText = data;
                 console.log(data);
               },
-              complete: function() {
+              complete: function() { // now doDiff
                 doDiff(baseText, newText);
               }
             });
@@ -59,12 +63,12 @@
           var endTime = (new Date()).getTime();
           console.log('difflib.SequenceMatcher: ' + (endTime - startTime) + ' ms');
           
-        	var $diffoutput = $("#diffoutput");
-        	$diffoutput.html('');
+        	var $diff_output = $("#diff-output");
+        	$diff_output.html('');
         	
         	// render diff side-by-side
         	var startTime = (new Date()).getTime();
-          	$diffoutput.html(
+          	$diff_output.html(
               diffview.buildView({ 
               baseTextLines:baseTextLines,
               newTextLines:newTextLines,
@@ -85,12 +89,8 @@
     </script>
 </head>
 <body>
-  <input type="button" id="diff" value="diff" />
-  <table width="840px">
-    <tr>
-      <td><textarea id="baseText" style="width:400px;height:10px"></textarea></td>
-      <td><textarea id="newText" style="width:400px;height:10px"></textarea></td>
-    </tr>
-  </table>
-	<div id="diffoutput" style="width:100%"> </div>
+  <input type="button" id="diff-btn" value="diff" />
+	<div id="diff-output" style="width:100%">
+	  <!-- diff output>
+	</div>
 </body></html>

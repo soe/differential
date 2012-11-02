@@ -76,7 +76,6 @@ diffview = {
 			var e = document.createElement(name);
 			e.className = clazz;
 			e.appendChild(document.createTextNode(text));
-			console.log(e);
 			return e;
 		}
 	
@@ -195,6 +194,7 @@ diffview = {
 		
 		node = celt("table", "diff" + (inline ? " inlinediff" : ""));
 		for (var idx in tdata) node.appendChild(tdata[idx]);
+		console.log(node);
 		return node;
 	}
 }

@@ -8,6 +8,7 @@
     <script type="text/javascript" src="js/jquery.min.js"></script>
     
     <link rel="stylesheet" type="text/css" href="css/diffview.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
     
     <script language="javascript">
       $(function() {
@@ -16,7 +17,10 @@
         var files = hash.split(',');
         
         // set default
-        if(!files.length) files = Array('baseText.json', 'newText.json');
+        if(!files.length) {
+          files = Array('baseText.json', 'newText.json');
+          window.locatin.hash = 'baseText.json,newText.json';
+        }
         
         // change endpoint here
         //var endpoint = 'https://api.cmc.appirio.net/va1/metadata/';
@@ -50,7 +54,7 @@
               }
             });
           }
-        });
+        }); // end ajax-ception!!!
         
         var doDiff = function(baseText, newText){
         	var baseTextLines = difflib.stringAsLines(baseText['source']);
@@ -81,16 +85,24 @@
         	);
         	var endTime = (new Date()).getTime();
           console.log('diffview.buildView: ' + (endTime - startTime) + ' ms');
-        };
-        
-        // when diff button is clicked
-        $("#diff").click(doDiff());
+        }; // end doDiff function
       });
     </script>
 </head>
 <body>
-  <input type="button" id="diff-btn" value="diff" />
-	<div id="diff-output" style="width:100%">
-	  <!-- diff output>
-	</div>
+  <div id="container">
+    <div id="header">
+      <div id="logo">Differential <i>- Javascript Diff UI component</i></div>
+      <div id="links">
+        <a href="https://bit.ly/differential-demo" target="_blank">Demo</a>
+        <a href="https://bit.ly/differential-code" target="_blank">Code</a>
+        <a href="https://bit.ly/differential-doc" target="_blank">Documentation</a>
+      </div>
+    </div>
+    <br />
+    <hr />
+  	<div id="diff-output" style="width:100%">
+  	  <!-- diff output -->
+  	</div>
+  </div>
 </body></html>

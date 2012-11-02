@@ -12,7 +12,9 @@
     <script language="javascript">
       $(function() {
         // get files to compare: #baseText.json,newText.json
-        files = window.location.hash.split(',');
+        var hash = window.location.hash.substr(1);
+        var files = hash.split(',');
+        alert(files[0]);
         
         //var endpoint = 'https://api.cmc.appirio.net/va1/metadata/';
         var endpoint = 'http://soe.github.com/differential/files/';
@@ -20,7 +22,7 @@
         // data/params to pass while getting from the endpoint
         var data = {'param1': 'value1'};
         
-        // ajax-ception
+        // ajax-ception!!!
         $.ajax({ // get baseText
           url: endpoint + files[0],
           dataType: 'json',

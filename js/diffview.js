@@ -73,7 +73,6 @@ diffview = {
 		}
 		
 		function ctelt (name, clazz, text) {
-		  console.log(text);
 			var e = document.createElement(name);
 			e.className = clazz;
 			e.appendChild(document.createTextNode(text));

@@ -14,7 +14,6 @@
         // get files to compare: #baseText.json,newText.json
         var hash = window.location.hash.substr(1);
         var files = hash.split(',');
-        alert(files[0]);
         
         //var endpoint = 'https://api.cmc.appirio.net/va1/metadata/';
         var endpoint = 'http://soe.github.com/differential/files/';
@@ -29,7 +28,8 @@
           data: data,
           success: function(data) {
             console.log(data);
-            
+          },
+          complete: function() {
             $.ajax({ // get newText
               url: endpoint + files[1],
               dataType: 'json',

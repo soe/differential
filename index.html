@@ -17,7 +17,7 @@
         var files = hash.split(',');
         
         // set default
-        if(!files.length) {
+        if(!window.location.hash.length) {
           files = Array('baseText.json', 'newText.json');
           window.locatin.hash = 'baseText.json,newText.json';
         }

@@ -56,6 +56,7 @@
           }
         }); // end ajax-ception!!!
         
+        // call difflib.SequenceMatcher and then diffview.buildView
         var doDiff = function(baseText, newText){
         	var baseTextLines = difflib.stringAsLines(baseText['source']);
         	var newTextLines = difflib.stringAsLines(newText['source']);
@@ -87,8 +88,8 @@
         	var timer_diffview = endTime - startTime; 
         	
           // timer output
-          $('#timer').html('difflib: '+ timer_difflib +' ms, diffview: '+ timer_diffview +' ms');
-          console.log('difflib: '+ timer_difflib +' ms, diffview: '+ timer_diffview +' ms');
+          $('#timer').html('[TIMER] difflib: '+ timer_difflib +' ms, diffview: '+ timer_diffview +' ms');
+          console.log('[TIMER] difflib: '+ timer_difflib +' ms, diffview: '+ timer_diffview +' ms');
           
         }; // end doDiff function
       });
@@ -99,7 +100,7 @@
     <div id="header">
       <div id="logo">Differential <i>- Javascript Diff UI component</i></div>
       <div id="links">
-        <a href="https://bit.ly/differential-demo" target="_blank">Demo</a>
+        <a href="https://bit.ly/differential-screencast" target="_blank">Screencast</a>
         <a href="https://bit.ly/differential-code" target="_blank">Code</a>
         <a href="https://bit.ly/differential-doc" target="_blank">Documentation</a>
       </div>

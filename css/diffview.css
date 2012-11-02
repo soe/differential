@@ -11,6 +11,7 @@ table.diff {
 table.diff tbody { 
 	font-family:Consolas, Courier, monospace;
 	line-height: 130%;
+	font-size: 11px;
 }
 
 /* file names */

@@ -73,6 +73,15 @@
         	
         	// render diff side-by-side
         	var startTime = (new Date()).getTime();
+        	console.log(diffview.buildView({ 
+          baseTextLines:baseTextLines,
+          newTextLines:newTextLines,
+          opcodes:opcodes,
+          baseTextName:baseText['name'],
+          newTextName:newText['name'],
+          contextSize:0,
+          viewType:0
+      	}));
           	$diff_output.html(
               diffview.buildView({ 
               baseTextLines:baseTextLines,
@@ -82,7 +91,7 @@
               newTextName:newText['name'],
               contextSize:0,
               viewType:0
-          	})
+          	});
         	);
         	var endTime = (new Date()).getTime();
         	var timer_diffview = endTime - startTime; 

@@ -110,7 +110,7 @@ diffview = {
 			if (tidx < tend) {
 				row.appendChild(telt("th", (tidx + 1).toString()));
 				//row.appendChild(ctelt("td", change, textLines[tidx].replace(/\t/g, "\u00a0\u00a0\u00a0\u00a0")));
-				row.appendChild(ctelt("td", change, textLines[tidx].replace(/\t/g, "&#x09;")));
+				row.appendChild(ctelt("td", change, textLines[tidx]));
 				return tidx + 1;
 			} else {
 				row.appendChild(document.createElement("th"));
@@ -123,7 +123,7 @@ diffview = {
 			row.appendChild(telt("th", tidx == null ? "" : (tidx + 1).toString()));
 			row.appendChild(telt("th", tidx2 == null ? "" : (tidx2 + 1).toString()));
 			//row.appendChild(ctelt("td", change, textLines[tidx != null ? tidx : tidx2].replace(/\t/g, "\u00a0\u00a0\u00a0\u00a0")));
-			row.appendChild(ctelt("td", change, textLines[tidx != null ? tidx : tidx2].replace(/\t/g, "&#x09;")));
+			row.appendChild(ctelt("td", change, textLines[tidx != null ? tidx : tidx2]));
 		}
 		
 		for (var idx = 0; idx < opcodes.length; idx++) {
@@ -194,7 +194,6 @@ diffview = {
 		
 		node = celt("table", "diff" + (inline ? " inlinediff" : ""));
 		for (var idx in tdata) node.appendChild(tdata[idx]);
-		console.log(node);
-		return node;
+		return node.replace(/\s/g, '&nbsp;').replace(/\t/g, "&#x09;");
 	}
 }

@@ -12,7 +12,6 @@ table.diff tbody {
 	font-family:Consolas, Courier, monospace;
 	line-height: 130%;
 	font-size: 11px;
-	white-space: pre;
 }
 
 /* file names */
@@ -44,6 +43,7 @@ table.diff tbody td {
 	padding-top:.4em;
 	vertical-align:top;
 	min-height: 1.9em;
+	white-space: pre;
 }
 
 /* line colors */

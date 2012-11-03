@@ -70,7 +70,7 @@
         	
         	// render diff side-by-side
         	var startTime = (new Date()).getTime();
-        	console.log(_out);
+        	
         	var _out = diffview.buildView({ 
             baseTextLines:baseTextLines,
             newTextLines:newTextLines,
@@ -80,6 +80,7 @@
             contextSize:0,
             viewType:0
         	});
+        	console.log(_out);
           $diff_output.html(_out);
         	var endTime = (new Date()).getTime();
         	var timer_diffview = endTime - startTime; 

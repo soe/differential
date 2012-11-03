@@ -58,9 +58,6 @@
         	var baseTextLines = difflib.stringAsLines(baseText['source'].replace(/ /g, '&nbsp;').replace(/\t/g, "&#x09;"));
         	var newTextLines = difflib.stringAsLines(newText['source'].replace(/ /g, '&nbsp;').replace(/\t/g, "&#x09;"));
         	
-        	console.log(baseTextLines);
-        	console.log(newTextLines);
-        	
         	// difflib.SequenceMatcher
         	var startTime = (new Date()).getTime();
         	var sm = new difflib.SequenceMatcher(baseTextLines, newTextLines);
@@ -73,6 +70,7 @@
         	
         	// render diff side-by-side
         	var startTime = (new Date()).getTime();
+        	console.log(_out);
         	var _out = diffview.buildView({ 
             baseTextLines:baseTextLines,
             newTextLines:newTextLines,

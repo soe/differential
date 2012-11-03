@@ -55,8 +55,8 @@
         
         // call difflib.SequenceMatcher and then diffview.buildView
         var doDiff = function(baseText, newText){
-        	var baseTextLines = difflib.stringAsLines(baseText['source'].replace(/ /g, '&nbsp;').replace(/\t/g, "&#x09;"));
-        	var newTextLines = difflib.stringAsLines(newText['source'].replace(/ /g, '&nbsp;').replace(/\t/g, "&#x09;"));
+        	var baseTextLines = difflib.stringAsLines(baseText['source']);
+        	var newTextLines = difflib.stringAsLines(newText['source']);
         	
         	// difflib.SequenceMatcher
         	var startTime = (new Date()).getTime();

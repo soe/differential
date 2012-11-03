@@ -43,7 +43,7 @@ table.diff tbody td {
 	padding-top:.4em;
 	vertical-align:top;
 	min-height: 1.9em;
-	white-space: pre;
+	white-space: pre-wrap;
 }
 
 /* line colors */

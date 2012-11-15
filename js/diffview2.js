@@ -30,17 +30,17 @@ diffview2 = {
 
 		function clean_text(str) {
 			// escape html characters: &, <, >
-			str = str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+			//str = str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
 			// spaceChar
-			if(params.spaceChar) str = str.replace(/^\s+/, function(x) { return x.replace(/\s/g, '<span class="whitechar">'+ params.spaceChar +'</span>'); });
+			//if(params.spaceChar) str = str.replace(/^\s+/, function(x) { return x.replace(/\s/g, '<span class="whitechar">'+ params.spaceChar +'</span>'); });
 			
 			// tabChar
-			if(params.tabChar) str = str.replace(/^\t+/, function(x) { return x.replace(/\t/g, '<span class="whitechar">'+ params.tabChar +'</span>'); });
+			//if(params.tabChar) str = str.replace(/^\t+/, function(x) { return x.replace(/\t/g, '<span class="whitechar">'+ params.tabChar +'</span>'); });
 			
 			// newlineChar
 			//if(params.newlineChar) str = str.replace(/\r\n/, '<span class="whitechar">'+ params.newlineChar +'</span>\n');
-			// /if(params.newlineChar) str = str + '<span class="whitechar">'+ params.newlineChar +'</span>';
+			//if(params.newlineChar) str = str + '<span class="whitechar">'+ params.newlineChar +'</span>';
 			
 			return str;
 		}

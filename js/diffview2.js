@@ -1,4 +1,4 @@
-
+/* rewritten diffview2 - much much faster from ~2x onwards */
 diffview2 = {
 	/**
 	 * Builds and returns a visual diff view.  The single parameter, `params', should contain
@@ -53,17 +53,17 @@ diffview2 = {
 
 			for(var i = 0; i < rowcnt; i++) {
 				if(change == "insert") {
-					lhs.push('<th></th><td class="skip">&nbsp;</td>'); // skip
+					lhs.push('<th></th><td class="empty">&nbsp;</td>'); // skip
 					rhs.push('<th>'+ parseInt(n+i+1) +'</th><td class="insert">'+ safe_tags_regex(newTextLines[n + i]) +'</td>');
 				} else if(change == "delete") {
 					lhs.push('<th>'+ parseInt(b+i+1) +'</th><td class="delete">'+ safe_tags_regex(baseTextLines[b + i]) +'</td>');
-					rhs.push('<th></th><td class="skip">&nbsp;</td>'); // skip
+					rhs.push('<th></th><td class="empty">&nbsp;</td>'); // skip
 				} else if(change == "replace") {
 					if(be > b + i) lhs.push('<th>'+ parseInt(b+i+1) +'</th><td class="replace">'+ safe_tags_regex(baseTextLines[b + i]) +'</td>');
-					else lhs.push('<th></th><td class="skip">&nbsp;</td>'); // skip
+					else lhs.push('<th></th><td class="empty">&nbsp;</td>'); // skip
 
 					if(ne > n + i) rhs.push('<th>'+ parseInt(n+i+1) +'</th><td class="replace">'+ safe_tags_regex(newTextLines[n + i]) +'</td>');
-					else rhs.push('<th></th><td class="skip">&nbsp;</td>'); // skip
+					else rhs.push('<th></th><td class="empty">&nbsp;</td>'); // skip
 				} else if(change == "equal") {
 					lhs.push('<th>'+ parseInt(b+i+1) +'</th><td class="equal">'+ safe_tags_regex(baseTextLines[b + i]) +'</td>');
 					rhs.push('<th>'+ parseInt(n+i+1) +'</th><td class="equal">'+ safe_tags_regex(newTextLines[n + i]) +'</td>');
@@ -74,7 +74,7 @@ diffview2 = {
 		lhs_table = '<table class="diff"><tbody><tr>' + lhs.join('</tr><tr>') + '</tr></tbody></table>';
 		rhs_table = '<table class="diff"><tbody><tr>' + rhs.join('</tr><tr>') + '</tr></tbody></table>';
 
-		return '<table><tr class="vertical-align: top;"><td>'+ lhs_table +'</td><td>'+ rhs_table +'</tr></table>';
+		return '<table><tr><td class="vertical-align: top;">'+ lhs_table +'</td><td class="vertical-align: top;">'+ rhs_table +'</tr></table>';
 
 	}
 }

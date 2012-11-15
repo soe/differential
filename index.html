@@ -69,8 +69,8 @@
         	// render diff side-by-side
         	var startTime = (new Date()).getTime();
         	console.log(opcodes);
-        	// diffview.buildView
-        	var _out = diffview.buildView({ 
+        	// diffview.buildView2
+        	var _out = diffview2.buildView({ 
             baseTextLines:baseTextLines,
             newTextLines:newTextLines,
             opcodes:opcodes,
@@ -86,28 +86,9 @@
           $diff_output.html('');
           $diff_output.html(_out);
         	
-        	
           // timer output
-          $('#timer').html('[TIMER] difflib: '+ timer_difflib +' ms, diffview: '+ timer_diffview +' ms');
-          console.log('[TIMER] difflib: '+ timer_difflib +' ms, diffview: '+ timer_diffview +' ms');
-
-          var startTime = (new Date()).getTime();
-          var _out = diffview2.buildView({ 
-            baseTextLines:baseTextLines,
-            newTextLines:newTextLines,
-            opcodes:opcodes,
-            baseTextName:baseText['name'],
-            newTextName:newText['name'],
-            contextSize:0,
-            viewType:0
-          });
-          var endTime = (new Date()).getTime();
-          console.log(endTime - startTime);
-
-          var $diff_output2 = $("#diff-output2");
-          $diff_output2.html('');
-          $diff_output2.html(_out);
-          
+          $('#timer').html('[TIMER] difflib: '+ timer_difflib +' ms, diffview2: '+ timer_diffview +' ms');
+          console.log('[TIMER] difflib: '+ timer_difflib +' ms, diffview2: '+ timer_diffview +' ms');          
           
         }; // end doDiff function
       });
@@ -130,7 +111,5 @@
   	<div id="diff-output" style="width:100%">
   	  <!-- diff output -->
   	</div>
-    <div>Diffview2</div>
-    <div id="diff-output2" style="width:100%; vertical-align: top;"></div>
   </div>
 </body></html>

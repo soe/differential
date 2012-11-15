@@ -68,8 +68,11 @@
             newlineChar: '&crarr;',
           }
 
+          var startTime = (new Date()).getTime();
         	var baseTextLines = difflib.stringAsLines(baseText['source'], params);
         	var newTextLines = difflib.stringAsLines(newText['source'], params);
+          var endTime = (new Date()).getTime();
+          console.log(endTime - startTime + ' ms - prepare source strings'); 
         	
         	// difflib.SequenceMatcher
         	var startTime = (new Date()).getTime();
@@ -100,8 +103,10 @@
           $diff_output.html(_out);
 
           // render scroll bar with markers
+          var startTime = (new Date()).getTime();
           new VisiScroll(document.getElementById("diff-output"));
-        	
+        	var endTime = (new Date()).getTime();
+          console.log(endTime - startTime + ' ms - visiscroll'); 
           // timer output
           $('#timer').html('[TIMER] difflib: '+ timer_difflib +' ms, diffview2: '+ timer_diffview +' ms');
           console.log('[TIMER] difflib: '+ timer_difflib +' ms, diffview2: '+ timer_diffview +' ms');          

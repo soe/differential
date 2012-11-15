@@ -38,15 +38,12 @@ table.diff tbody th {
 }
 
 /* body rows */
-table.diff {
-	width: 440px;
-}
 table.diff tbody td {
 	padding:0px .4em;
 	padding-top:.4em;
 	vertical-align:top;
 	min-height: 1.9em;
-	white-space: pre;
+	white-space: pre-wrap;
 }
 
 /* line colors */

@@ -85,14 +85,14 @@
           var $diff_output = $("#diff-output");
           $diff_output.html('');
           $diff_output.html(_out);
+
+          new VisiScroll(document.getElementById("diff-output"));
         	
           // timer output
           $('#timer').html('[TIMER] difflib: '+ timer_difflib +' ms, diffview2: '+ timer_diffview +' ms');
           console.log('[TIMER] difflib: '+ timer_difflib +' ms, diffview2: '+ timer_diffview +' ms');          
           
         }; // end doDiff function
-
-        new VisiScroll(document.getElementById("diff-output"));
       });
     </script>
 </head>

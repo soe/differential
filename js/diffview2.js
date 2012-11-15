@@ -74,11 +74,13 @@ diffview2 = {
 			}
 		} // end for
 
+		// build lhs_table
 		lhs_table = '<table class="diff"><thead><tr><th colspan="2">'+ baseTextName +'</th></tr></thead>';
 		lhs_table += '<tbody><tr>' + lhs.join('</tr><tr>') + '</tr></tbody></table>';
 
+		// build rhs_table
 		rhs_table = '<table class="diff"><thead><tr><th colspan="2">'+ newTextName +'</th></tr></thead>';
-		rhs_table = '<tbody><tr>' + rhs.join('</tr><tr>') + '</tr></tbody></table>';
+		rhs_table += '<tbody><tr>' + rhs.join('</tr><tr>') + '</tr></tbody></table>';
 
 		// return the two table in side-by-side view
 		return '<table><tr><td style="vertical-align: top;">'+ lhs_table +'</td><td style="vertical-align: top;">'+ rhs_table +'</tr></table>';

@@ -162,7 +162,8 @@ VisiScroll = function(htmlContent){
     };
     
     this.renderMarginMarks = function(recalculateMarkers){
-        var sliderMarkerElements = $(htmlContent).find('[visiScrollMarker]');
+        //var sliderMarkerElements = $(htmlContent).find('[visiScrollMarker]');
+        var sliderMarkerElements = $(htmlContent).find('[marker]');
         
         if (recalculateMarkers || !this.markers) {
             this.markers = sliderMarkerElements.map(function(){

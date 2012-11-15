@@ -11,10 +11,6 @@ diffview2 = {
 	 *	   to "Base Text"
 	 * - newTextName: the title to be displayed above the new text listing in the diff view; defaults
 	 *	   to "New Text"
-	 * - contextSize: the number of lines of context to show around differences; by default, all lines
-	 *	   are shown
-	 * - viewType: if 0, a side-by-side diff view is generated (default); if 1, an inline diff view is
-	 *	   generated
 	 */
 	buildView: function (params) {
 		var baseTextLines = params.baseTextLines;
@@ -23,8 +19,6 @@ diffview2 = {
 
 		var baseTextName = params.baseTextName ? params.baseTextName : "Base Text";
 		var newTextName = params.newTextName ? params.newTextName : "New Text";
-		//var contextSize = params.contexttextSize;
-		//var inline = (params.viewType == 0 || params.viewType == 1) ? params.viewType : 0;
 
 		if (baseTextLines == null)
 			throw "Cannot build diff view; baseTextLines is not defined.";
@@ -68,14 +62,14 @@ diffview2 = {
 			for(var i = 0; i < rowcnt; i++) {
 				if(change == "insert") {
 
-					lhs.push('<th visiScrollMarker="#9e9"></th><td class="empty">&nbsp;</td>'); // skip
+					lhs.push('<th visiScrollMarker="'+ params.insertColor +'"></th><td class="empty">&nbsp;</td>'); // skip
 					rhs.push('<th>'+ parseInt(n+i+1) +'</th><td class="insert">'+ clean_text(newTextLines[n + i]) +'</td>');
 				} else if(change == "delete") {
-					lhs.push('<th visiScrollMarker="#e99">'+ parseInt(b+i+1) +'</th><td class="delete">'+ clean_text(baseTextLines[b + i]) +'</td>');
+					lhs.push('<th visiScrollMarker="'+ params.deleteColor +'">'+ parseInt(b+i+1) +'</th><td class="delete">'+ clean_text(baseTextLines[b + i]) +'</td>');
 					rhs.push('<th></th><td class="empty">&nbsp;</td>'); // skip
 				} else if(change == "replace") {
-					if(be > b + i) lhs.push('<th visiScrollMarker="#fd8">'+ parseInt(b+i+1) +'</th><td class="replace">'+ clean_text(baseTextLines[b + i]) +'</td>');
-					else lhs.push('<th visiScrollMarker="#fd8"></th><td class="empty">&nbsp;</td>'); // skip
+					if(be > b + i) lhs.push('<th visiScrollMarker="'+ params.replaceColor +'">'+ parseInt(b+i+1) +'</th><td class="replace">'+ clean_text(baseTextLines[b + i]) +'</td>');
+					else lhs.push('<th visiScrollMarker="'+ params.replaceColor +'"></th><td class="empty">&nbsp;</td>'); // skip
 
 					if(ne > n + i) rhs.push('<th>'+ parseInt(n+i+1) +'</th><td class="replace">'+ clean_text(newTextLines[n + i]) +'</td>');
 					else rhs.push('<th></th><td class="empty">&nbsp;</td>'); // skip
@@ -93,6 +87,8 @@ diffview2 = {
 		// build rhs_table
 		rhs_table = '<table class="diff"><thead><tr><th colspan="2">'+ newTextName +'</th></tr></thead>';
 		rhs_table += '<tbody><tr>' + rhs.join('</tr><tr>') + '</tr></tbody></table>';
+
+		css = '<style>table.diff .replace { background-color: '+ params.replaceColor +'; } table.diff .insert { background-color: '+ params.insertColor +'; } table.diff .delete { background-color: '+ params.deleteColor +'; }</style>'
 
 		// return the two table in side-by-side view
 		return '<table><tr><td style="vertical-align: top;">'+ lhs_table +'</td><td style="vertical-align: top;">'+ rhs_table +'</tr></table>';

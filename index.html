@@ -75,9 +75,14 @@
             opcodes:opcodes,
             baseTextName:baseText['name'],
             newTextName:newText['name'],
+            /* render whitespace characters */
             spaceChar: '&middot;',
             tabChar: '&rarr;',
-            newlineChar: '&crarr;'
+            newlineChar: '&crarr;',
+            /* colors */
+            replaceColor: '#fd8',
+            deleteColor: '#e99',
+            insertColor: '#9e9'
         	});
           var endTime = (new Date()).getTime();
           var timer_diffview = endTime - startTime; 
@@ -111,7 +116,7 @@
     <hr />
     <div id="timer">
     </div>
-    <div style="height: 450px; width: auto;">
+    <div style="height: 450px; width: auto; border: 1px solid #888;">
     	<div id="diff-output" >
     	  <!-- diff output -->
     	</div>

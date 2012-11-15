@@ -42,12 +42,14 @@ difflib = {
 		// escape html characters: &, <, >
 		str = str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
-		// spaceChar
-		if(params.spaceChar) str = str.replace(/\n\s+/g, function(x) { return x.replace(/\s/g, '<span class="whitechar">'+ params.spaceChar +'</span>'); });
-			
-		// tabChar
-		if(params.tabChar) str = str.replace(/\n\t+/g, function(x) { return x.replace(/\t/g, '<span class="whitechar">'+ params.tabChar +'</span>'); });
-			
+		// spaceChar & tabChar
+		str = str.replace(/[\n|\r][\t|\s]+/g, function(x) { 
+			if(params.spaceChar) x = x.replace(/\s/g, '<span class="whitechar">'+ params.spaceChar +'</span>'); 
+			if(params.tabChar) x = x.replace(/\s/g, '<span class="whitechar">'+ params.tabChar +'</span>'); 
+
+			return x
+		});
+
 		// newlineChar
 		if(params.newlineChar) str = str.replace(/\n/g, '<span class="whitechar">'+ params.newlineChar +'</span>\n');
 			

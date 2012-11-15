@@ -64,3 +64,8 @@ table.diff .skip {
 table.diff .insert {
 	background-color:#9E9;
 }
+
+/* whitechar */
+table.diff .span.whitechar {
+	opacity: 0.5;
+}

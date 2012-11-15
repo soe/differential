@@ -1,4 +1,5 @@
 /* rewritten diffview2 - much much faster from ~2x onwards */
+
 diffview2 = {
 	/**
 	 * Builds and returns a visual diff view.  The single parameter, `params', should contain
@@ -38,8 +39,9 @@ diffview2 = {
 			if(params.tabChar) str = str.replace(/^\t+/, function(x) { return x.replace(/\t/g, '<span class="whitechar">'+ params.tabChar +'</span>'); });
 			
 			// newlineChar
-			if(params.newlineChar) str = str.replace(/\r\n/, '<span class="whitechar">'+ params.newlineChar +'</span>\n');
-
+			//if(params.newlineChar) str = str.replace(/\r\n/, '<span class="whitechar">'+ params.newlineChar +'</span>\n');
+			if(params.newlineChar) str = str + '<span class="whitechar">'+ params.newlineChar +'</span>';
+			
 			return str;
 		}
 
@@ -88,6 +90,7 @@ diffview2 = {
 		rhs_table = '<table class="diff"><thead><tr><th colspan="2">'+ newTextName +'</th></tr></thead>';
 		rhs_table += '<tbody><tr>' + rhs.join('</tr><tr>') + '</tr></tbody></table>';
 
+		// css for colors
 		css = '<style>table.diff .replace { background-color: '+ params.replaceColor +'; } table.diff .insert { background-color: '+ params.insertColor +'; } table.diff .delete { background-color: '+ params.deleteColor +'; }</style>'
 
 		// return the two table in side-by-side view

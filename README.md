@@ -3,7 +3,7 @@ Differential
 
 ##Introduction
 
-Javascript Diff UI component is made up of difflib and diffview. Difflib is a direct port of Python’s core Difflib library. Diffview renders side-by-side comparison view.
+Javascript Diff UI component is made up of difflib and diffview2 (better version of diffview). Difflib is a direct port of Python’s core Difflib library. Diffview2 renders side-by-side comparison view.
 
 Detailed info: https://bit.ly/differential-doc
 

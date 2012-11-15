@@ -4,6 +4,7 @@
     <title>Differential</title>
     <script type="text/javascript" src="js/difflib.js"></script>
     <script type="text/javascript" src="js/diffview.js"></script>
+    <script type="text/javascript" src="js/diffview2.js"></script>
     <script type="text/javascript" src="js/jquery.min.js"></script>
     
     <link rel="stylesheet" type="text/css" href="css/diffview.css">
@@ -89,6 +90,21 @@
           // timer output
           $('#timer').html('[TIMER] difflib: '+ timer_difflib +' ms, diffview: '+ timer_diffview +' ms');
           console.log('[TIMER] difflib: '+ timer_difflib +' ms, diffview: '+ timer_diffview +' ms');
+
+          var startTime = (new Date()).getTime();
+          var _out = diffview2.buildView({ 
+            baseTextLines:baseTextLines,
+            newTextLines:newTextLines,
+            opcodes:opcodes,
+            baseTextName:baseText['name'],
+            newTextName:newText['name'],
+            contextSize:0,
+            viewType:0
+          });
+
+          $diff_output.html(_out);
+          var endTime = (new Date()).getTime();
+          console.log(endTime - startTime);
           
         }; // end doDiff function
       });

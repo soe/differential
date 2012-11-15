@@ -45,9 +45,8 @@ diffview2 = {
 			return str;
 		}
 
-		// arrays holding rows for left hand side and right hand side
-		var lhs = Array();
-		var rhs = Array();
+		// arrays holding rows
+		var rows = Array();
 		
 		// loop through opcodes and build the lhs and rhs rows
 		for (var idx = 0; idx < opcodes.length; idx++) {
@@ -63,38 +62,48 @@ diffview2 = {
 
 			for(var i = 0; i < rowcnt; i++) {
 				if(change == "insert") {
+					row = '<th visiScrollMarker="'+ params.insertColor +'"></th><td class="empty">&nbsp;</td>'; // skip
+					row += '<th>'+ parseInt(n+i+1) +'</th><td class="insert">'+ clean_text(newTextLines[n + i]) +'</td>';
 
-					lhs.push('<th visiScrollMarker="'+ params.insertColor +'"></th><td class="empty">&nbsp;</td>'); // skip
-					rhs.push('<th>'+ parseInt(n+i+1) +'</th><td class="insert">'+ clean_text(newTextLines[n + i]) +'</td>');
+					rows.push(row);
 				} else if(change == "delete") {
-					lhs.push('<th visiScrollMarker="'+ params.deleteColor +'">'+ parseInt(b+i+1) +'</th><td class="delete">'+ clean_text(baseTextLines[b + i]) +'</td>');
-					rhs.push('<th></th><td class="empty">&nbsp;</td>'); // skip
-				} else if(change == "replace") {
-					if(be > b + i) lhs.push('<th visiScrollMarker="'+ params.replaceColor +'">'+ parseInt(b+i+1) +'</th><td class="replace">'+ clean_text(baseTextLines[b + i]) +'</td>');
-					else lhs.push('<th visiScrollMarker="'+ params.replaceColor +'"></th><td class="empty">&nbsp;</td>'); // skip
+					row = '<th visiScrollMarker="'+ params.deleteColor +'">'+ parseInt(b+i+1) +'</th><td class="delete">'+ clean_text(baseTextLines[b + i]) +'</td>');
+					row += '<th></th><td class="empty">&nbsp;</td>'; // skip
 
-					if(ne > n + i) rhs.push('<th>'+ parseInt(n+i+1) +'</th><td class="replace">'+ clean_text(newTextLines[n + i]) +'</td>');
-					else rhs.push('<th></th><td class="empty">&nbsp;</td>'); // skip
+					rows.push(row);
+				} else if(change == "replace") {
+					if(be > b + i) row = '<th visiScrollMarker="'+ params.replaceColor +'">'+ parseInt(b+i+1) +'</th><td class="replace">'+ clean_text(baseTextLines[b + i]) +'</td>';
+					else row = '<th visiScrollMarker="'+ params.replaceColor +'"></th><td class="empty">&nbsp;</td>'; // skip
+
+					if(ne > n + i) row += '<th>'+ parseInt(n+i+1) +'</th><td class="replace">'+ clean_text(newTextLines[n + i]) +'</td>';
+					else row += '<th></th><td class="empty">&nbsp;</td>'; // skip
+
+					rows.push(row);
 				} else if(change == "equal") {
-					lhs.push('<th>'+ parseInt(b+i+1) +'</th><td class="equal">'+ clean_text(baseTextLines[b + i]) +'</td>');
-					rhs.push('<th>'+ parseInt(n+i+1) +'</th><td class="equal">'+ clean_text(newTextLines[n + i]) +'</td>');
+					row = '<th>'+ parseInt(b+i+1) +'</th><td class="equal">'+ clean_text(baseTextLines[b + i]) +'</td>';
+					row += '<th>'+ parseInt(n+i+1) +'</th><td class="equal">'+ clean_text(newTextLines[n + i]) +'</td>';
+
+					rows.push(row);
 				}	
 			}
 		} // end for
 
 		// build lhs_table
-		lhs_table = '<table class="diff"><thead><tr><th colspan="2">'+ baseTextName +'</th></tr></thead>';
-		lhs_table += '<tbody><tr>' + lhs.join('</tr><tr>') + '</tr></tbody></table>';
+		//lhs_table = '<table class="diff"><thead><tr><th colspan="2">'+ baseTextName +'</th></tr></thead>';
+		//lhs_table += '<tbody><tr>' + lhs.join('</tr><tr>') + '</tr></tbody></table>';
 
 		// build rhs_table
-		rhs_table = '<table class="diff"><thead><tr><th colspan="2">'+ newTextName +'</th></tr></thead>';
-		rhs_table += '<tbody><tr>' + rhs.join('</tr><tr>') + '</tr></tbody></table>';
+		//rhs_table = '<table class="diff"><thead><tr><th colspan="2">'+ newTextName +'</th></tr></thead>';
+		//rhs_table += '<tbody><tr>' + rhs.join('</tr><tr>') + '</tr></tbody></table>';
 
+		// build table
+		table = '<table class="diff"><thead><tr><th colspan="2">'+ baseTextName +'</th><th colspan="2">'+ newTextName +'</th></tr></thead>';
+		table += '<tbody><tr>' + rows.join('</tr><tr>') + '</tr></tbody></table>';
 		// css for colors
 		css = '<style>table.diff .replace { background-color: '+ params.replaceColor +'; } table.diff .insert { background-color: '+ params.insertColor +'; } table.diff .delete { background-color: '+ params.deleteColor +'; }</style>'
 
 		// return the two table in side-by-side view
-		return '<table><tr><td style="vertical-align: top;">'+ lhs_table +'</td><td style="vertical-align: top;">'+ rhs_table +'</tr></table>'+ css;
+		return table + css;
 
 	}
 }

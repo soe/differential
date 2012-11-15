@@ -68,14 +68,14 @@ diffview2 = {
 			for(var i = 0; i < rowcnt; i++) {
 				if(change == "insert") {
 
-					lhs.push('<th visiScrollMarker="#a00" style="color: red; height: 3px; background: black;"></th><td class="empty">&nbsp;</td>'); // skip
+					lhs.push('<th marker="#9E9"></th><td class="empty">&nbsp;</td>'); // skip
 					rhs.push('<th>'+ parseInt(n+i+1) +'</th><td class="insert">'+ clean_text(newTextLines[n + i]) +'</td>');
 				} else if(change == "delete") {
-					lhs.push('<th>'+ parseInt(b+i+1) +'</th><td class="delete">'+ clean_text(baseTextLines[b + i]) +'</td>');
+					lhs.push('<th marker="#E99">'+ parseInt(b+i+1) +'</th><td class="delete">'+ clean_text(baseTextLines[b + i]) +'</td>');
 					rhs.push('<th></th><td class="empty">&nbsp;</td>'); // skip
 				} else if(change == "replace") {
-					if(be > b + i) lhs.push('<th>'+ parseInt(b+i+1) +'</th><td class="replace">'+ clean_text(baseTextLines[b + i]) +'</td>');
-					else lhs.push('<th></th><td class="empty">&nbsp;</td>'); // skip
+					if(be > b + i) lhs.push('<th marker="#FD8">'+ parseInt(b+i+1) +'</th><td class="replace">'+ clean_text(baseTextLines[b + i]) +'</td>');
+					else lhs.push('<th marker="#FD8"></th><td class="empty">&nbsp;</td>'); // skip
 
 					if(ne > n + i) rhs.push('<th>'+ parseInt(n+i+1) +'</th><td class="replace">'+ clean_text(newTextLines[n + i]) +'</td>');
 					else rhs.push('<th></th><td class="empty">&nbsp;</td>'); // skip

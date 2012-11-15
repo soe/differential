@@ -7,7 +7,6 @@
 table.diff {
 	border-collapse:collapse;
 	border:1px solid darkgray;
-	height: 400px;
 }
 table.diff tbody { 
 	font-family:Consolas, Courier, monospace;

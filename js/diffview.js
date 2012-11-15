@@ -214,11 +214,11 @@ diffview = {
 
 			for(var i = 0; i < rowcnt; i++) {
 				if(change == "insert") {
-					lhs.push('<td></td><td class="skip"></td>'); // skip
+					lhs.push('<td></td><td class="skip">&nbsp;</td>'); // skip
 					rhs.push('<td>'+ n+i+1 +'</td><td class="insert">'+ newTextLines[n + i] +'</td>');
 				} else if(change == "delete") {
 					lhs.push('<td>'+ b+i+1 +'</td><td class="delete">'+ baseTextLines[b + i] +'</td>');
-					rhs.push('<td></td><td class="skip"></td>'); // skip
+					rhs.push('<td></td><td class="skip">&nbsp;</td>'); // skip
 				} else if(change == "replace") {
 					if(be <= b + i) lhs.push('<td>'+ b+i+1 +'</td><td class="replace">'+ baseTextLines[b + i] +'</td>');
 					if(ne <= n + i) rhs.push('<td>'+ n+i+1 +'</td><td class="replace">'+ newTextLines[n + i] +'</td>');
@@ -229,8 +229,8 @@ diffview = {
 			}
 		} // end for
 
-		lhs_table = '<table><tr>' + lhs.join('</tr><tr>') + '</tr></table>';
-		rhs_table = '<table><tr>' + lhs.join('</tr><tr>') + '</tr></table>';
+		lhs_table = '<table class="diff"><tr>' + lhs.join('</tr><tr>') + '</tr></table>';
+		rhs_table = '<table class="diff"><tr>' + lhs.join('</tr><tr>') + '</tr></table>';
 
 		return '<table><tr><td>'+ lhs_table +'</td><td>'+ rhs_table +'</tr></table>';
 

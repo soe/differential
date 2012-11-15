@@ -33,6 +33,10 @@ diffview2 = {
 		if (!opcodes)
 			throw "Cannot build diff view; opcodes is not defined.";
 
+		function safe_tags_regex(str) {
+			return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+		}
+
 		var lhs = Array();
 		var rhs = Array();
 		
@@ -50,21 +54,23 @@ diffview2 = {
 			for(var i = 0; i < rowcnt; i++) {
 				if(change == "insert") {
 					lhs.push('<th></th><td class="skip">&nbsp;</td>'); // skip
-					rhs.push('<th>'+ parseInt(n+i+1) +'</th><td class="insert">'+ newTextLines[n + i] +'</td>');
+					rhs.push('<th>'+ parseInt(n+i+1) +'</th><td class="insert">'+ safe_tags_regex(newTextLines[n + i]) +'</td>');
 				} else if(change == "delete") {
-					lhs.push('<th>'+ parseInt(b+i+1) +'</th><td class="delete">'+ baseTextLines[b + i] +'</td>');
+					lhs.push('<th>'+ parseInt(b+i+1) +'</th><td class="delete">'+ safe_tags_regex(baseTextLines[b + i]) +'</td>');
 					rhs.push('<th></th><td class="skip">&nbsp;</td>'); // skip
 				} else if(change == "replace") {
-					if(be <= b + i) lhs.push('<th>'+ parseInt(b+i+1) +'</th><td class="replace">'+ baseTextLines[b + i] +'</td>');
-					if(ne <= n + i) rhs.push('<th>'+ parseInt(n+i+1) +'</th><td class="replace">'+ newTextLines[n + i] +'</td>');
+					if(be <= b + i) lhs.push('<th>'+ parseInt(b+i+1) +'</th><td class="replace">'+ safe_tags_regex(baseTextLines[b + i]) +'</td>');
+					else lhs.push('<th></th><td class="skip">&nbsp;</td>'); // skip
+
+					if(ne <= n + i) rhs.push('<th>'+ parseInt(n+i+1) +'</th><td class="replace">'+ safe_tags_regex(newTextLines[n + i]) +'</td>');
+					else rhs.push('<th></th><td class="skip">&nbsp;</td>'); // skip
 				} else if(change == "equal") {
-					lhs.push('<th>'+ parseInt(b+i+1) +'</th><td class="equal">'+ baseTextLines[b + i] +'</td>');
-					rhs.push('<th>'+ parseInt(n+i+1) +'</th><td class="equal">'+ newTextLines[n + i] +'</td>');
+					lhs.push('<th>'+ parseInt(b+i+1) +'</th><td class="equal">'+ safe_tags_regex(baseTextLines[b + i]) +'</td>');
+					rhs.push('<th>'+ parseInt(n+i+1) +'</th><td class="equal">'+ safe_tags_regex(newTextLines[n + i]) +'</td>');
 				}	
 			}
 		} // end for
 
-		console.log(lhs);
 		lhs_table = '<table class="diff"><tbody><tr>' + lhs.join('</tr><tr>') + '</tr></tbody></table>';
 		rhs_table = '<table class="diff"><tbody><tr>' + rhs.join('</tr><tr>') + '</tr></tbody></table>';
 

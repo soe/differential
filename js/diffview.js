@@ -49,7 +49,6 @@ diffview = {
 		var newTextLines = params.newTextLines;
 		var opcodes = params.opcodes;
 
-		console.log(opcodes);
 		var baseTextName = params.baseTextName ? params.baseTextName : "Base Text";
 		var newTextName = params.newTextName ? params.newTextName : "New Text";
 		var contextSize = params.contextSize;

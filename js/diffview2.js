@@ -33,13 +33,16 @@ diffview2 = {
 		if (!opcodes)
 			throw "Cannot build diff view; opcodes is not defined.";
 
+		// escape html characters: &, <, >
 		function safe_tags_regex(str) {
 			return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 		}
 
+		// arrays holding rows for left hand side and right hand side
 		var lhs = Array();
 		var rhs = Array();
 		
+		// loop through opcodes and build the lhs and rhs rows
 		for (var idx = 0; idx < opcodes.length; idx++) {
 			code = opcodes[idx];
 			change = code[0];
@@ -71,10 +74,14 @@ diffview2 = {
 			}
 		} // end for
 
-		lhs_table = '<table class="diff"><tbody><tr>' + lhs.join('</tr><tr>') + '</tr></tbody></table>';
-		rhs_table = '<table class="diff"><tbody><tr>' + rhs.join('</tr><tr>') + '</tr></tbody></table>';
+		lhs_table = '<table class="diff"><thead><th colspan="2">'+ baseTextName +'</th></thead>';
+		lhs_table += '<tbody><tr>' + lhs.join('</tr><tr>') + '</tr></tbody></table>';
 
-		return '<table><tr><td class="vertical-align: top;">'+ lhs_table +'</td><td class="vertical-align: top;">'+ rhs_table +'</tr></table>';
+		rhs_table = '<table class="diff"><thead><th colspan="2">'+ newTextName +'</th></thead>';
+		rhs_table = '<tbody><tr>' + rhs.join('</tr><tr>') + '</tr></tbody></table>';
+
+		// return the two table in side-by-side view
+		return '<table><tr><td style="vertical-align: top;">'+ lhs_table +'</td><td style="vertical-align: top;">'+ rhs_table +'</tr></table>';
 
 	}
 }

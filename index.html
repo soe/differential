@@ -66,9 +66,6 @@
           var endTime = (new Date()).getTime();
           var timer_difflib = endTime - startTime; 
           
-        	var $diff_output = $("#diff-output");
-        	$diff_output.html('');
-        	
         	// render diff side-by-side
         	var startTime = (new Date()).getTime();
         	console.log(opcodes);
@@ -82,10 +79,13 @@
             contextSize:0,
             viewType:0
         	});
+          var endTime = (new Date()).getTime();
+          var timer_diffview = endTime - startTime; 
 
+          var $diff_output = $("#diff-output");
+          $diff_output.html('');
           $diff_output.html(_out);
-        	var endTime = (new Date()).getTime();
-        	var timer_diffview = endTime - startTime; 
+        	
         	
           // timer output
           $('#timer').html('[TIMER] difflib: '+ timer_difflib +' ms, diffview: '+ timer_diffview +' ms');
@@ -101,13 +101,13 @@
             contextSize:0,
             viewType:0
           });
-          console.log(_out);
+          var endTime = (new Date()).getTime();
+          console.log(endTime - startTime);
 
           var $diff_output2 = $("#diff-output2");
           $diff_output2.html('');
           $diff_output2.html(_out);
-          var endTime = (new Date()).getTime();
-          console.log(endTime - startTime);
+          
           
         }; // end doDiff function
       });

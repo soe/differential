@@ -33,9 +33,20 @@ diffview2 = {
 		if (!opcodes)
 			throw "Cannot build diff view; opcodes is not defined.";
 
-		// escape html characters: &, <, >
-		function safe_tags_regex(str) {
-			return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+		function clean_text(str) {
+			// escape html characters: &, <, >
+			str = str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+			// spaceChar
+			if(params.spaceChar) str = str.replace(/^\s+/, function(x) { return x.replace(/\s/g, params.spaceChar); });
+			
+			// tabChar
+			if(params.tabChar) str = str.replace(/^\t+/, function(x) { return x.replace(/\t/g, params.tabChar); });
+			
+			// newlineChar
+			if(params.newlineChar) str = str.replace(/\n/g, params.newlineChar);
+
+			return str;
 		}
 
 		// arrays holding rows for left hand side and right hand side
@@ -57,19 +68,19 @@ diffview2 = {
 			for(var i = 0; i < rowcnt; i++) {
 				if(change == "insert") {
 					lhs.push('<th></th><td class="empty">&nbsp;</td>'); // skip
-					rhs.push('<th>'+ parseInt(n+i+1) +'</th><td class="insert">'+ safe_tags_regex(newTextLines[n + i]) +'</td>');
+					rhs.push('<th>'+ parseInt(n+i+1) +'</th><td class="insert">'+ clean_text(newTextLines[n + i]) +'</td>');
 				} else if(change == "delete") {
-					lhs.push('<th>'+ parseInt(b+i+1) +'</th><td class="delete">'+ safe_tags_regex(baseTextLines[b + i]) +'</td>');
+					lhs.push('<th>'+ parseInt(b+i+1) +'</th><td class="delete">'+ clean_text(baseTextLines[b + i]) +'</td>');
 					rhs.push('<th></th><td class="empty">&nbsp;</td>'); // skip
 				} else if(change == "replace") {
-					if(be > b + i) lhs.push('<th>'+ parseInt(b+i+1) +'</th><td class="replace">'+ safe_tags_regex(baseTextLines[b + i]) +'</td>');
+					if(be > b + i) lhs.push('<th>'+ parseInt(b+i+1) +'</th><td class="replace">'+ clean_text(baseTextLines[b + i]) +'</td>');
 					else lhs.push('<th></th><td class="empty">&nbsp;</td>'); // skip
 
-					if(ne > n + i) rhs.push('<th>'+ parseInt(n+i+1) +'</th><td class="replace">'+ safe_tags_regex(newTextLines[n + i]) +'</td>');
+					if(ne > n + i) rhs.push('<th>'+ parseInt(n+i+1) +'</th><td class="replace">'+ clean_text(newTextLines[n + i]) +'</td>');
 					else rhs.push('<th></th><td class="empty">&nbsp;</td>'); // skip
 				} else if(change == "equal") {
-					lhs.push('<th>'+ parseInt(b+i+1) +'</th><td class="equal">'+ safe_tags_regex(baseTextLines[b + i]) +'</td>');
-					rhs.push('<th>'+ parseInt(n+i+1) +'</th><td class="equal">'+ safe_tags_regex(newTextLines[n + i]) +'</td>');
+					lhs.push('<th>'+ parseInt(b+i+1) +'</th><td class="equal">'+ clean_text(baseTextLines[b + i]) +'</td>');
+					rhs.push('<th>'+ parseInt(n+i+1) +'</th><td class="equal">'+ clean_text(newTextLines[n + i]) +'</td>');
 				}	
 			}
 		} // end for

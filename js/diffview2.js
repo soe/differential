@@ -23,7 +23,7 @@ diffview2 = {
 
 		var baseTextName = params.baseTextName ? params.baseTextName : "Base Text";
 		var newTextName = params.newTextName ? params.newTextName : "New Text";
-		//var contextSize = params.contextSize;
+		//var contextSize = params.contexttextSize;
 		//var inline = (params.viewType == 0 || params.viewType == 1) ? params.viewType : 0;
 
 		if (baseTextLines == null)
@@ -59,10 +59,10 @@ diffview2 = {
 					lhs.push('<th>'+ parseInt(b+i+1) +'</th><td class="delete">'+ safe_tags_regex(baseTextLines[b + i]) +'</td>');
 					rhs.push('<th></th><td class="skip">&nbsp;</td>'); // skip
 				} else if(change == "replace") {
-					if(be <= b + i) lhs.push('<th>'+ parseInt(b+i+1) +'</th><td class="replace">'+ safe_tags_regex(baseTextLines[b + i]) +'</td>');
+					if(be > b + i) lhs.push('<th>'+ parseInt(b+i+1) +'</th><td class="replace">'+ safe_tags_regex(baseTextLines[b + i]) +'</td>');
 					else lhs.push('<th></th><td class="skip">&nbsp;</td>'); // skip
 
-					if(ne <= n + i) rhs.push('<th>'+ parseInt(n+i+1) +'</th><td class="replace">'+ safe_tags_regex(newTextLines[n + i]) +'</td>');
+					if(ne > n + i) rhs.push('<th>'+ parseInt(n+i+1) +'</th><td class="replace">'+ safe_tags_regex(newTextLines[n + i]) +'</td>');
 					else rhs.push('<th></th><td class="skip">&nbsp;</td>'); // skip
 				} else if(change == "equal") {
 					lhs.push('<th>'+ parseInt(b+i+1) +'</th><td class="equal">'+ safe_tags_regex(baseTextLines[b + i]) +'</td>');

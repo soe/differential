@@ -43,10 +43,10 @@ difflib = {
 		str = str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
 		// spaceChar
-		if(params.spaceChar) str = str.replace(/\n\s+/, function(x) { return x.replace(/\s/g, '<span class="whitechar">'+ params.spaceChar +'</span>'); });
+		if(params.spaceChar) str = str.replace(/\n\s+/g, function(x) { return x.replace(/\s/g, '<span class="whitechar">'+ params.spaceChar +'</span>'); });
 			
 		// tabChar
-		if(params.tabChar) str = str.replace(/\n\t+/, function(x) { return x.replace(/\t/g, '<span class="whitechar">'+ params.tabChar +'</span>'); });
+		if(params.tabChar) str = str.replace(/\n\t+/g, function(x) { return x.replace(/\t/g, '<span class="whitechar">'+ params.tabChar +'</span>'); });
 			
 		// newlineChar
 		if(params.newlineChar) str = str.replace(/\n/g, '<span class="whitechar">'+ params.newlineChar +'</span>\n');

@@ -47,23 +47,7 @@ table.diff tbody td {
 }
 
 /* line colors */
-table.diff .empty {
-	background-color:#DDD;
-}
-table.diff .replace {
-	background-color:#FD8;
-}
-table.diff .delete {
-	background-color:#E99;
-}
-table.diff .skip {
-	background-color:#EFEFEF;
-	border:1px solid #AAA;
-	border-right:1px solid #BBC;
-}
-table.diff .insert {
-	background-color:#9E9;
-}
+
 
 /* whitechar */
 table.diff span.whitechar {

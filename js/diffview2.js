@@ -21,11 +21,10 @@ diffview2 = {
 		var newTextLines = params.newTextLines;
 		var opcodes = params.opcodes;
 
-		console.log(opcodes);
 		var baseTextName = params.baseTextName ? params.baseTextName : "Base Text";
 		var newTextName = params.newTextName ? params.newTextName : "New Text";
-		var contextSize = params.contextSize;
-		var inline = (params.viewType == 0 || params.viewType == 1) ? params.viewType : 0;
+		//var contextSize = params.contextSize;
+		//var inline = (params.viewType == 0 || params.viewType == 1) ? params.viewType : 0;
 
 		if (baseTextLines == null)
 			throw "Cannot build diff view; baseTextLines is not defined.";
@@ -50,23 +49,23 @@ diffview2 = {
 
 			for(var i = 0; i < rowcnt; i++) {
 				if(change == "insert") {
-					lhs.push('<td></td><td class="skip">&nbsp;</td>'); // skip
-					rhs.push('<td>'+ parseInt(n+i+1) +'</td><td class="insert">'+ newTextLines[n + i] +'</td>');
+					lhs.push('<th></th><td class="skip">&nbsp;</td>'); // skip
+					rhs.push('<th>'+ parseInt(n+i+1) +'</th><td class="insert">'+ newTextLines[n + i] +'</td>');
 				} else if(change == "delete") {
-					lhs.push('<td>'+ parseInt(b+i+1) +'</td><td class="delete">'+ baseTextLines[b + i] +'</td>');
-					rhs.push('<td></td><td class="skip">&nbsp;</td>'); // skip
+					lhs.push('<th>'+ parseInt(b+i+1) +'</th><td class="delete">'+ baseTextLines[b + i] +'</td>');
+					rhs.push('<th></th><td class="skip">&nbsp;</td>'); // skip
 				} else if(change == "replace") {
-					if(be <= b + i) lhs.push('<td>'+ parseInt(b+i+1) +'</td><td class="replace">'+ baseTextLines[b + i] +'</td>');
-					if(ne <= n + i) rhs.push('<td>'+ parseInt(n+i+1) +'</td><td class="replace">'+ newTextLines[n + i] +'</td>');
+					if(be <= b + i) lhs.push('<th>'+ parseInt(b+i+1) +'</th><td class="replace">'+ baseTextLines[b + i] +'</td>');
+					if(ne <= n + i) rhs.push('<th>'+ parseInt(n+i+1) +'</th><td class="replace">'+ newTextLines[n + i] +'</td>');
 				} else if(change == "equal") {
-					lhs.push('<td>'+ parseInt(b+i+1) +'</td><td class="equal">'+ baseTextLines[b + i] +'</td>');
-					rhs.push('<td>'+ parseInt(n+i+1) +'</td><td class="equal">'+ newTextLines[n + i] +'</td>');
+					lhs.push('<th>'+ parseInt(b+i+1) +'</th><td class="equal">'+ baseTextLines[b + i] +'</td>');
+					rhs.push('<th>'+ parseInt(n+i+1) +'</th><td class="equal">'+ newTextLines[n + i] +'</td>');
 				}	
 			}
 		} // end for
 
-		lhs_table = '<table class="diff"><tr>' + lhs.join('</tr><tr>') + '</tr></table>';
-		rhs_table = '<table class="diff"><tr>' + lhs.join('</tr><tr>') + '</tr></table>';
+		lhs_table = '<table class="diff"><tbody><tr>' + lhs.join('</tr><tr>') + '</tr></tbody></table>';
+		rhs_table = '<table class="diff"><tbody><tr>' + rhs.join('</tr><tr>') + '</tr></tbody></table>';
 
 		return '<table><tr><td>'+ lhs_table +'</td><td>'+ rhs_table +'</tr></table>';
 

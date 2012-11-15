@@ -40,7 +40,7 @@ diffview2 = {
 			
 			// newlineChar
 			//if(params.newlineChar) str = str.replace(/\r\n/, '<span class="whitechar">'+ params.newlineChar +'</span>\n');
-			if(params.newlineChar) str = str + '<span class="whitechar">'+ params.newlineChar +'</span>';
+			// /if(params.newlineChar) str = str + '<span class="whitechar">'+ params.newlineChar +'</span>';
 			
 			return str;
 		}
@@ -88,17 +88,10 @@ diffview2 = {
 			}
 		} // end for
 
-		// build lhs_table
-		//lhs_table = '<table class="diff"><thead><tr><th colspan="2">'+ baseTextName +'</th></tr></thead>';
-		//lhs_table += '<tbody><tr>' + lhs.join('</tr><tr>') + '</tr></tbody></table>';
-
-		// build rhs_table
-		//rhs_table = '<table class="diff"><thead><tr><th colspan="2">'+ newTextName +'</th></tr></thead>';
-		//rhs_table += '<tbody><tr>' + rhs.join('</tr><tr>') + '</tr></tbody></table>';
-
 		// build table
 		table = '<table class="diff"><thead><tr><th colspan="2">'+ baseTextName +'</th><th colspan="2">'+ newTextName +'</th></tr></thead>';
 		table += '<tbody><tr>' + rows.join('</tr><tr>') + '</tr></tbody></table>';
+		
 		// css for colors
 		css = '<style>table.diff .replace { background-color: '+ params.replaceColor +'; } table.diff .insert { background-color: '+ params.insertColor +'; } table.diff .delete { background-color: '+ params.deleteColor +'; }</style>'
 

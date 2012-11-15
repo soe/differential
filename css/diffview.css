@@ -66,6 +66,6 @@ table.diff .insert {
 }
 
 /* whitechar */
-table.diff .span.whitechar {
+table.diff span.whitechar {
 	opacity: 0.5;
 }

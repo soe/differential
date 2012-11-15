@@ -64,10 +64,11 @@ diffview2 = {
 			}
 		} // end for
 
+		console.log(lhs);
 		lhs_table = '<table class="diff"><tbody><tr>' + lhs.join('</tr><tr>') + '</tr></tbody></table>';
 		rhs_table = '<table class="diff"><tbody><tr>' + rhs.join('</tr><tr>') + '</tr></tbody></table>';
 
-		return '<table><tr><td>'+ lhs_table +'</td><td>'+ rhs_table +'</tr></table>';
+		return '<table><tr class="vertical-align: top;"><td>'+ lhs_table +'</td><td>'+ rhs_table +'</tr></table>';
 
 	}
 }

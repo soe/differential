@@ -67,7 +67,7 @@ diffview2 = {
 
 					rows.push(row);
 				} else if(change == "delete") {
-					row = '<th visiScrollMarker="'+ params.deleteColor +'">'+ parseInt(b+i+1) +'</th><td class="delete">'+ clean_text(baseTextLines[b + i]) +'</td>');
+					row = '<th visiScrollMarker="'+ params.deleteColor +'">'+ parseInt(b+i+1) +'</th><td class="delete">'+ clean_text(baseTextLines[b + i]) +'</td>';
 					row += '<th></th><td class="empty">&nbsp;</td>'; // skip
 
 					rows.push(row);

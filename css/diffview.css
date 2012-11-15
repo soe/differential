@@ -4,6 +4,9 @@
   Copyright 2007 - 2011 Chas Emerick <cemerick@snowtide.com>. All rights reserved.
   BSD license
 */
+html, body {
+	height: 100%;
+}
 table.diff {
 	border-collapse:collapse;
 	border:1px solid darkgray;

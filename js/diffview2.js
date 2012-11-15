@@ -91,7 +91,7 @@ diffview2 = {
 		css = '<style>table.diff .replace { background-color: '+ params.replaceColor +'; } table.diff .insert { background-color: '+ params.insertColor +'; } table.diff .delete { background-color: '+ params.deleteColor +'; }</style>'
 
 		// return the two table in side-by-side view
-		return '<table><tr><td style="vertical-align: top;">'+ lhs_table +'</td><td style="vertical-align: top;">'+ rhs_table +'</tr></table>';
+		return '<table><tr><td style="vertical-align: top;">'+ lhs_table +'</td><td style="vertical-align: top;">'+ rhs_table +'</tr></table>'+ css;
 
 	}
 }

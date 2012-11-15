@@ -54,10 +54,22 @@
           }
         }); // end ajax-ception!!!
         
+        var cleanText = function(text, params) {
+
+        }
+
         // call difflib.SequenceMatcher and then diffview.buildView
         var doDiff = function(baseText, newText){
-        	var baseTextLines = difflib.stringAsLines(baseText['source']);
-        	var newTextLines = difflib.stringAsLines(newText['source']);
+
+          // to replace whitespace characters
+          var params = {
+            spaceChar: '&middot;',
+            tabChar: '&rarr;',
+            newlineChar: '&crarr;',
+          }
+
+        	var baseTextLines = difflib.stringAsLines(baseText['source'], params);
+        	var newTextLines = difflib.stringAsLines(newText['source'], params);
         	
         	// difflib.SequenceMatcher
         	var startTime = (new Date()).getTime();
@@ -75,10 +87,6 @@
             opcodes:opcodes,
             baseTextName:baseText['name'],
             newTextName:newText['name'],
-            /* render whitespace characters */
-            spaceChar: '&middot;',
-            tabChar: '&rarr;',
-            newlineChar: '&crarr;',
             /* colors */
             replaceColor: '#fd8',
             deleteColor: '#e99',

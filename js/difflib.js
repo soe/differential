@@ -37,7 +37,20 @@ difflib = {
 	
 	stripLinebreaks: function (str) { return str.replace(/^[\n\r]*|[\n\r]*$/g, ""); },
 	
-	stringAsLines: function (str) {
+	stringAsLines: function (str, params) {
+
+		// escape html characters: &, <, >
+		str = str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+		// spaceChar
+		if(params.spaceChar) str = str.replace(/^\s+/, function(x) { return x.replace(/\s/g, '<span class="whitechar">'+ params.spaceChar +'</span>'); });
+			
+		// tabChar
+		if(params.tabChar) str = str.replace(/^\t+/, function(x) { return x.replace(/\t/g, '<span class="whitechar">'+ params.tabChar +'</span>'); });
+			
+		// newlineChar
+		if(params.newlineChar) str = str.replace(/\n/g, '\n<span class="whitechar">'+ params.newlineChar +'</span>\n');
+			
 		var lfpos = str.indexOf("\n");
 		var crpos = str.indexOf("\r");
 		var linebreak = ((lfpos > -1 && crpos > -1) || crpos < 0) ? "\n" : "\r";

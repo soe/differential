@@ -28,23 +28,6 @@ diffview2 = {
 		if (!opcodes)
 			throw "Cannot build diff view; opcodes is not defined.";
 
-		function clean_text(str) {
-			// escape html characters: &, <, >
-			//str = str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-
-			// spaceChar
-			//if(params.spaceChar) str = str.replace(/^\s+/, function(x) { return x.replace(/\s/g, '<span class="whitechar">'+ params.spaceChar +'</span>'); });
-			
-			// tabChar
-			//if(params.tabChar) str = str.replace(/^\t+/, function(x) { return x.replace(/\t/g, '<span class="whitechar">'+ params.tabChar +'</span>'); });
-			
-			// newlineChar
-			//if(params.newlineChar) str = str.replace(/\r\n/, '<span class="whitechar">'+ params.newlineChar +'</span>\n');
-			//if(params.newlineChar) str = str + '<span class="whitechar">'+ params.newlineChar +'</span>';
-			
-			return str;
-		}
-
 		// arrays holding rows
 		var rows = Array();
 		
@@ -63,25 +46,25 @@ diffview2 = {
 			for(var i = 0; i < rowcnt; i++) {
 				if(change == "insert") {
 					row = '<th visiScrollMarker="'+ params.insertColor +'"></th><td class="empty">&nbsp;</td>'; // skip
-					row += '<th>'+ parseInt(n+i+1) +'</th><td class="insert">'+ clean_text(newTextLines[n + i]) +'</td>';
+					row += '<th>'+ parseInt(n+i+1) +'</th><td class="insert">'+ newTextLines[n + i] +'</td>';
 
 					rows.push(row);
 				} else if(change == "delete") {
-					row = '<th visiScrollMarker="'+ params.deleteColor +'">'+ parseInt(b+i+1) +'</th><td class="delete">'+ clean_text(baseTextLines[b + i]) +'</td>';
+					row = '<th visiScrollMarker="'+ params.deleteColor +'">'+ parseInt(b+i+1) +'</th><td class="delete">'+ baseTextLines[b + i] +'</td>';
 					row += '<th></th><td class="empty">&nbsp;</td>'; // skip
 
 					rows.push(row);
 				} else if(change == "replace") {
-					if(be > b + i) row = '<th visiScrollMarker="'+ params.replaceColor +'">'+ parseInt(b+i+1) +'</th><td class="replace">'+ clean_text(baseTextLines[b + i]) +'</td>';
+					if(be > b + i) row = '<th visiScrollMarker="'+ params.replaceColor +'">'+ parseInt(b+i+1) +'</th><td class="replace">'+ baseTextLines[b + i] +'</td>';
 					else row = '<th visiScrollMarker="'+ params.replaceColor +'"></th><td class="empty">&nbsp;</td>'; // skip
 
-					if(ne > n + i) row += '<th>'+ parseInt(n+i+1) +'</th><td class="replace">'+ clean_text(newTextLines[n + i]) +'</td>';
+					if(ne > n + i) row += '<th>'+ parseInt(n+i+1) +'</th><td class="replace">'+ newTextLines[n + i] +'</td>';
 					else row += '<th></th><td class="empty">&nbsp;</td>'; // skip
 
 					rows.push(row);
 				} else if(change == "equal") {
-					row = '<th>'+ parseInt(b+i+1) +'</th><td class="equal">'+ clean_text(baseTextLines[b + i]) +'</td>';
-					row += '<th>'+ parseInt(n+i+1) +'</th><td class="equal">'+ clean_text(newTextLines[n + i]) +'</td>';
+					row = '<th>'+ parseInt(b+i+1) +'</th><td class="equal">'+ baseTextLines[b + i] +'</td>';
+					row += '<th>'+ parseInt(n+i+1) +'</th><td class="equal">'+ newTextLines[n + i] +'</td>';
 
 					rows.push(row);
 				}	

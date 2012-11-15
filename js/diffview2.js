@@ -67,7 +67,8 @@ diffview2 = {
 
 			for(var i = 0; i < rowcnt; i++) {
 				if(change == "insert") {
-					lhs.push('<th></th><td class="empty">&nbsp;</td>'); // skip
+
+					lhs.push('<span visiScrollMarker="#a00" class="visiscroll"></span><th></th><td class="empty">&nbsp;</td>'); // skip
 					rhs.push('<th>'+ parseInt(n+i+1) +'</th><td class="insert">'+ clean_text(newTextLines[n + i]) +'</td>');
 				} else if(change == "delete") {
 					lhs.push('<th>'+ parseInt(b+i+1) +'</th><td class="delete">'+ clean_text(baseTextLines[b + i]) +'</td>');

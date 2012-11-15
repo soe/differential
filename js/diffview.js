@@ -215,7 +215,7 @@ diffview = {
 			for(var i = 0; i < rowcnt; i++) {
 				if(change == "insert") {
 					lhs.push('<td></td><td class="skip"></td>'); // skip
-					rhs.push('<td>'+ n+i+1 +'</td><td class="insert">'+ nextTextLines[n + i] +'</td>');
+					rhs.push('<td>'+ n+i+1 +'</td><td class="insert">'+ newTextLines[n + i] +'</td>');
 				} else if(change == "delete") {
 					lhs.push('<td>'+ b+i+1 +'</td><td class="delete">'+ baseTextLines[b + i] +'</td>');
 					rhs.push('<td></td><td class="skip"></td>'); // skip

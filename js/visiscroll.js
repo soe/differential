@@ -91,7 +91,7 @@ VisiScroll = function(htmlContent){
     
     $(container).height($(parent).height());
     $(container).css('overflow', 'hidden');
-    
+    console.log($(parent));
     var contentHeight = $(parent).height();
     
     this.canvas = document.createElement("canvas");

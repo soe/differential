@@ -102,7 +102,9 @@
             viewType:0
           });
 
-          $diff_output.html(_out);
+          var $diff_output2 = $("#diff-output2");
+          $diff_output2.html('');
+          $diff_output2.html(_out);
           var endTime = (new Date()).getTime();
           console.log(endTime - startTime);
           
@@ -125,6 +127,7 @@
     <div id="timer">
     </div>
   	<div id="diff-output" style="width:100%">
+      <div id="diff-output2" style="width:100%">
   	  <!-- diff output -->
   	</div>
   </div>

@@ -44,7 +44,7 @@ diffview2 = {
 			if(params.tabChar) str = str.replace(/^\t+/, function(x) { return x.replace(/\t/g, '<span class="whitechar">'+ params.tabChar +'</span>'); });
 			
 			// newlineChar
-			if(params.newlineChar) str = str.replace(/\n/g, '<span class="whitechar">'+ params.newlineChar +'</span>\n');
+			if(params.newlineChar) str = str.replace(/\r\n/, '<span class="whitechar">'+ params.newlineChar +'</span>\n');
 
 			return str;
 		}

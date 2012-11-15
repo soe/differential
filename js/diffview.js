@@ -188,7 +188,7 @@ diffview = {
 		node.setAttribute("colspan", inline ? 3 : 4);
 		node.appendChild(node2 = telt("a", "jsdifflib"));
 		node2.setAttribute("href", "http://github.com/cemerick/jsdifflib");*/
-		/*
+		
 		tdata.push(node = document.createElement("tbody"));
 		for (var idx in rows) node.appendChild(rows[idx]);
 		

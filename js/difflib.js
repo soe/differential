@@ -43,12 +43,12 @@ difflib = {
 		str = str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
 		// spaceChar & tabChar
-		str = str.replace(/[\n|\r][ |\t]+/g, function(x) { 
-			x = x.replace(/\n|\r/, '') + '\n';
-			if(params.spaceChar) x = '<span class="whitechar">'+ x.replace(/ /g, params.spaceChar) +'</span>'; 
-			if(params.tabChar) x = '<span class="whitechar">'+ x.replace(/\t/g, params.tabChar) +'</span>';
+		str = str.replace(/[\n|\r][ |\t]+/g, function(x) {
+			x = x.replace(/\n|\r/, '');
+			if(params.spaceChar) x = x.replace(/ /g, params.spaceChar); 
+			if(params.tabChar) x = x.replace(/\t/g, params.tabChar);
 
-			return x
+			return '\n<span class="whitechar">'+ x +'</span>';
 		});
 
 		// newlineChar

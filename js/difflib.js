@@ -44,14 +44,14 @@ difflib = {
 
 		// spaceChar & tabChar
 		str = str.replace(/[\n|\r][ |\t]+/g, function(x) { 
-			if(params.spaceChar) x = '<span class="whitechar">'+ x.replace(/ /g, params.spaceChar) +'</span>'; 
-			if(params.tabChar) x = '<span class="whitechar">'+ x.replace(/\t/g, params.tabChar) +'</span>'; 
+			if(params.spaceChar) x = x.replace(/ /g, '<span class="whitechar">'+ params.spaceChar +'</span>'); 
+			if(params.tabChar) x = x.replace(/\t/g, '<span class="whitechar">'+ params.tabChar +'</span>'); 
 
 			return x
 		});
 
 		// newlineChar
-		if(params.newlineChar) str = '<span class="whitechar">'+ str.replace(/\n/g, params.newlineChar) +'</span>\n';
+		if(params.newlineChar) str = str.replace(/\n/g, '<span class="whitechar">'+ params.newlineChar +'</span>\n');
 			
 		var lfpos = str.indexOf("\n");
 		var crpos = str.indexOf("\r");

@@ -51,7 +51,7 @@ difflib = {
 		});
 
 		// newlineChar
-		if(params.newlineChar) str = str.replace(/\n/g, '<span class="whitechar">'+ params.newlineChar +'</span>\n');
+		if(params.newlineChar) str = '<span class="whitechar">'+ str.replace(/\n/g, params.newlineChar) +'</span>\n';
 			
 		var lfpos = str.indexOf("\n");
 		var crpos = str.indexOf("\r");

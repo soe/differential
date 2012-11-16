@@ -44,8 +44,9 @@ difflib = {
 
 		// spaceChar & tabChar
 		str = str.replace(/[\n|\r][ |\t]+/g, function(x) { 
-			if(params.spaceChar) x = '\n<span class="whitechar">'+ x.replace(/\n|\r/, '').replace(/ /g, params.spaceChar) +'</span>'; 
-			//if(params.tabChar) x = x.replace(/\t/g, '<span class="whitechar">'+ params.tabChar +'</span>'); 
+			x = x.replace(/\n|\r/, '') + '\n';
+			if(params.spaceChar) x = '<span class="whitechar">'+ x.replace(/ /g, params.spaceChar) +'</span>'; 
+			if(params.tabChar) x = '<span class="whitechar">'+ x.replace(/\t/g, params.tabChar) +'</span>';
 
 			return x
 		});
